@@ -19,6 +19,7 @@ public class SetupWindow {
     private JLabel numberOfChordsLabel;
     private JLabel timeBetweenChordsLabel;
     private JButton startButton;
+    private JButton launchChordSelect;
 
     private int numberOfChords;
     private float timeBetweenChords;
@@ -86,6 +87,14 @@ public class SetupWindow {
                 training.launchWindow();
                 frame.dispose();
 
+            }
+        });
+
+        launchChordSelect.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ChordSelection chordSelection = new ChordSelection();
+                chordSelection.launchWindow();
             }
         });
 
