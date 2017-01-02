@@ -7,7 +7,8 @@ import javax.swing.*;
  */
 public class ChordSelection {
     private JPanel ChordSelection;
-    private JList selectedChords;
+    private JList selectedMajorChords;
+    private JList selectedMinorChords;
     private JFrame chordSelectionFrame;
 
     public ChordSelection(){
