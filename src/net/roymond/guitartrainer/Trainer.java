@@ -18,7 +18,19 @@ public class Trainer {
     private float timeBetween;
     private List<String> chordList;
 
-    public void establishFunctionality(int numChords, float timeBetween, List<String> chordList){
+
+    private String processChordList(){
+        StringBuilder sb = new StringBuilder();
+        for(String s : chordList){
+            sb.append(s);
+            sb.append(" ");
+        }
+        System.out.println("1: " + sb.toString());
+        return sb.toString();
+    }
+
+
+    public Trainer(int numChords, float timeBetween, List<String> chordList){
 
         this.numChords = numChords;
         this.timeBetween = timeBetween;
@@ -29,30 +41,17 @@ public class Trainer {
             public void actionPerformed(ActionEvent e) {
                 SetupWindow setupWindow = new SetupWindow();
                 setupWindow.launchSetupWindow();
-                 trainerFrame.dispose();
+                trainerFrame.dispose();
             }
         });
 
-        chordListLabel.setText(processChordList());
-    }
-
-    private String processChordList(){
-        StringBuilder sb = new StringBuilder();
-        for(String s : chordList){
-            sb.append(s);
-            sb.append(" ");
-        }
-        return sb.toString();
-    }
-
-
-    public Trainer(){
+        this.chordListLabel.setText(processChordList());
     }
 
     public void launchWindow() {
         trainerFrame = new JFrame("Trainer");
         trainerFrame.setTitle("Roy's Guitar Trainer");
-        trainerFrame.setContentPane(new Trainer().Trainer);
+        trainerFrame.setContentPane(this.Trainer);
         trainerFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         trainerFrame.pack();
         trainerFrame.setVisible(true);

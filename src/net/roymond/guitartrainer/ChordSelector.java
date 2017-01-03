@@ -12,6 +12,8 @@ public class ChordSelector extends JDialog {
     private JButton buttonCancel;
     private JList selectedMajorChords;
     private JList selectedMinorChords;
+    private JButton selectAll;
+    private JButton clearAll;
     private List<String> selectedChords;
 
     public ChordSelector() {
@@ -45,6 +47,23 @@ public class ChordSelector extends JDialog {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+
+        clearAll.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                selectedMajorChords.clearSelection();
+                selectedMinorChords.clearSelection();
+            }
+        });
+
+        selectAll.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                selectedMajorChords.addSelectionInterval(0, selectedMajorChords.getLastVisibleIndex());
+                selectedMinorChords.addSelectionInterval(0, selectedMinorChords.getLastVisibleIndex());
+            }
+        });
+
     }
 
     private void onOK() {

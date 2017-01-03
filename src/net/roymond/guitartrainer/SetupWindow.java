@@ -3,6 +3,8 @@ package net.roymond.guitartrainer;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -34,9 +36,12 @@ public class SetupWindow {
 
 
     public SetupWindow(){
+
+        //Initial values.
         numberOfChords = 10;
         timeBetweenChords = 9.75f;
-        chordList = null;
+        chordList = new ArrayList<String>(Arrays.asList("A", "B", "C","D", "E", "F","G"
+                ,"Am", "Bm", "Cm","Dm", "Em", "Fm","Gm"));
         updateLabels();
 
         decreaseCNB.addActionListener(new ActionListener() {
@@ -86,10 +91,9 @@ public class SetupWindow {
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Trainer training = new Trainer();
+                Trainer training = new Trainer(numberOfChords, timeBetweenChords, chordList);
                 training.launchWindow();
-                training.establishFunctionality(numberOfChords, timeBetweenChords, chordList);
-                frame.dispose();
+                frame.setVisible(false);
 
             }
         });
