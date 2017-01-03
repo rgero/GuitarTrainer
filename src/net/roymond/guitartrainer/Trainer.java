@@ -3,6 +3,7 @@ package net.roymond.guitartrainer;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 /**
  * Created by Roymond on 1/1/2017.
@@ -11,11 +12,17 @@ public class Trainer {
     static JFrame trainerFrame;
     private JButton backToSetupButton;
     private JPanel Trainer;
+    private JLabel chordListLabel;
 
     private int numChords;
     private float timeBetween;
+    private List<String> chordList;
 
-    private void establishFunctionality(){
+    public void establishFunctionality(int numChords, float timeBetween, List<String> chordList){
+
+        this.numChords = numChords;
+        this.timeBetween = timeBetween;
+        this.chordList = chordList;
 
         backToSetupButton.addActionListener(new ActionListener() {
             @Override
@@ -26,19 +33,20 @@ public class Trainer {
             }
         });
 
+        chordListLabel.setText(processChordList());
     }
 
-
-    public Trainer(int numChords, float timeBetween){
-        this.numChords = numChords;
-        this.timeBetween = timeBetween;
-
-        establishFunctionality(); //This is totally a hack because of the two constructors.
+    private String processChordList(){
+        StringBuilder sb = new StringBuilder();
+        for(String s : chordList){
+            sb.append(s);
+            sb.append(" ");
+        }
+        return sb.toString();
     }
+
 
     public Trainer(){
-
-        establishFunctionality(); //This is totally a hack because of the two constructors.
     }
 
     public void launchWindow() {
