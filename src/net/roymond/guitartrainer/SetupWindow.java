@@ -39,7 +39,7 @@ public class SetupWindow {
 
         //Initial values.
         numberOfChords = 10;
-        timeBetweenChords = 9.75f;
+        timeBetweenChords = 1.f;
         chordList = new ArrayList<String>(Arrays.asList("A", "B", "C","D", "E", "F","G"
                 ,"Am", "Bm", "Cm","Dm", "Em", "Fm","Gm"));
         updateLabels();
