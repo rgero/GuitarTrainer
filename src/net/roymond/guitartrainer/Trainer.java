@@ -4,8 +4,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Created by Roymond on 1/1/2017.
@@ -35,26 +33,29 @@ public class Trainer {
         return sb.toString();
     }
 
-    public String decrementTime(){
-        if (time <= .002) {
-            timer.cancel();
-            return "0.00";
-        }
-        time-=0.001;
-        return String.valueOf(time).subSequence(0,4).toString();
-    }
-
     private void runTimer(){
         time = timeBetween;
-        int delay = 1;
-        int period = 1;
-        timer.scheduleAtFixedRate(new TimerTask() {
+        int delay = 10;
+        numberOfChordsRemaining.setText(String.valueOf(numChords));
+        timer = new Timer(delay, new ActionListener() {
             @Override
-            public void run() {
-                timeRemaining.setText(decrementTime());
+            public void actionPerformed(ActionEvent e) {
+                if (time <= .011) {
+                    numChords--;
+                    numberOfChordsRemaining.setText(String.valueOf(numChords));
+                    time = timeBetween;
+                    //THIS IS WHERE WE CHOOSE NEW CHORD
+                    if (numChords < 1){
+                        timer.stop();
+                    }
+                } else {
+                    time -= 0.01;
+                }
+                timeRemaining.setText(String.format("%.2f", time));
             }
-        }, delay, period);
+        });
 
+        timer.start();
     }
 
 
@@ -63,7 +64,6 @@ public class Trainer {
         this.numChords = numChords;
         this.timeBetween = timeBetween;
         this.chordList = chordList;
-        timer = new Timer();
 
         backToSetupButton.addActionListener(new ActionListener() {
             @Override
@@ -75,6 +75,7 @@ public class Trainer {
         });
 
         this.chordListLabel.setText(processChordList());
+
         runTimer();
     }
 
