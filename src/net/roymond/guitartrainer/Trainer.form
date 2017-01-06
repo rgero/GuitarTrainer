@@ -20,9 +20,9 @@
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="1" use-parent-layout="false">
-            <minimum-size width="150" height="-1"/>
-            <preferred-size width="150" height="-1"/>
-            <maximum-size width="150" height="-1"/>
+            <minimum-size width="200" height="-1"/>
+            <preferred-size width="200" height="-1"/>
+            <maximum-size width="200" height="-1"/>
           </grid>
         </constraints>
         <properties/>
@@ -61,13 +61,13 @@
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="1" use-parent-layout="false">
-            <minimum-size width="150" height="-1"/>
-            <preferred-size width="150" height="-1"/>
-            <maximum-size width="150" height="-1"/>
+            <minimum-size width="200" height="-1"/>
+            <preferred-size width="200" height="-1"/>
+            <maximum-size width="200" height="-1"/>
           </grid>
         </constraints>
         <properties/>
-        <border type="bevel-lowered" title="Time Remaining"/>
+        <border type="bevel-lowered" title="Time Remaining (sec)"/>
         <children>
           <component id="f433" class="javax.swing.JLabel" binding="timeRemaining">
             <constraints>
