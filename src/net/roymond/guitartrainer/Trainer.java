@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Roymond on 1/1/2017.
@@ -12,7 +13,7 @@ public class Trainer {
     static JFrame trainerFrame;
     private JButton backToSetupButton;
     private JPanel Trainer;
-    private JLabel chordListLabel;
+    private JLabel currentChordLabel;
     private JLabel numberOfChordsRemaining;
     private JLabel timeRemaining;
 
@@ -20,7 +21,9 @@ public class Trainer {
     private float timeBetween;
     private float time;
     private List<String> chordList;
-    Timer timer;
+    private String currentChord;
+    private Random rand;
+    private Timer timer;
 
 
     private String processChordList(){
@@ -32,6 +35,18 @@ public class Trainer {
         return sb.toString();
     }
 
+    private void chooseNewChord(){
+        String tempSelected = currentChord;
+        if (chordList.size() > 1) {
+            while (tempSelected.equals(currentChord)) {
+                tempSelected = chordList.get(rand.nextInt(chordList.size()));
+            }
+        } else {
+            tempSelected = chordList.get(0);
+        }
+        currentChord = tempSelected;
+    }
+
     private void runTimer(){
         time = timeBetween;
         int delay = 10;
@@ -41,9 +56,10 @@ public class Trainer {
             public void actionPerformed(ActionEvent e) {
                 if (time <= .011) {
                     numChords--;
+                    chooseNewChord();
+                    currentChordLabel.setText(currentChord);
                     numberOfChordsRemaining.setText(String.valueOf(numChords));
                     time = timeBetween;
-                    //THIS IS WHERE WE CHOOSE NEW CHORD
                     if (numChords < 1){
                         timer.stop();
                     }
@@ -63,6 +79,8 @@ public class Trainer {
         this.numChords = numChords;
         this.timeBetween = timeBetween;
         this.chordList = chordList;
+        this.currentChord = "";
+        this.rand = new Random();
 
         backToSetupButton.addActionListener(new ActionListener() {
             @Override
@@ -73,7 +91,8 @@ public class Trainer {
             }
         });
 
-        this.chordListLabel.setText(processChordList());
+        chooseNewChord();
+        currentChordLabel.setText(currentChord);
 
         runTimer();
     }
