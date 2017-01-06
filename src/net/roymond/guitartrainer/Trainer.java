@@ -8,9 +8,10 @@ import java.util.Random;
 
 /**
  * Created by Roymond on 1/1/2017.
+ * This is where the actual training session will be handled.
  */
 public class Trainer {
-    static JFrame trainerFrame;
+    private static JFrame trainerFrame;
     private JButton backToSetupButton;
     private JPanel Trainer;
     private JLabel currentChordLabel;
@@ -54,23 +55,20 @@ public class Trainer {
         time = timeBetween;
         int delay = 10;
         numberOfChordsRemaining.setText(String.valueOf(numChords));
-        timer = new Timer(delay, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (time <= .011) {
-                    numChords--;
-                    chooseNewChord();
-                    currentChordLabel.setText(currentChord);
-                    numberOfChordsRemaining.setText(String.valueOf(numChords));
-                    time = timeBetween;
-                    if (numChords < 1){
-                        timer.stop();
-                    }
-                } else {
-                    time -= 0.01;
+        timer = new Timer(delay, e -> {
+            if (time <= .011) {
+                numChords--;
+                chooseNewChord();
+                currentChordLabel.setText(currentChord);
+                numberOfChordsRemaining.setText(String.valueOf(numChords));
+                time = timeBetween;
+                if (numChords < 1){
+                    timer.stop();
                 }
-                timeRemaining.setText(String.format("%.2f", time));
+            } else {
+                time -= 0.01;
             }
+            timeRemaining.setText(String.format("%.2f", time));
         });
 
         timer.start();
@@ -85,13 +83,10 @@ public class Trainer {
         this.currentChord = "";
         this.rand = new Random();
 
-        backToSetupButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                SetupWindow setupWindow = new SetupWindow();
-                setupWindow.launchSetupWindow();
-                trainerFrame.dispose();
-            }
+        backToSetupButton.addActionListener(e -> {
+            SetupWindow setupWindow = new SetupWindow();
+            setupWindow.launchSetupWindow();
+            trainerFrame.dispose();
         });
 
         chooseNewChord();
@@ -100,7 +95,7 @@ public class Trainer {
         runTimer();
     }
 
-    public void launchWindow() {
+    void launchWindow() {
         trainerFrame = new JFrame("Trainer");
         trainerFrame.setTitle("Roy's Guitar Trainer");
         trainerFrame.setContentPane(this.Trainer);

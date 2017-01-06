@@ -9,10 +9,11 @@ import java.util.List;
 
 /**
  * Created by Roymond on 1/1/2017.
+ * This is the setup for the program (TODO write this better)
  */
 public class SetupWindow {
 
-    static JFrame frame;
+    private static JFrame frame;
     private JPanel GuitarTrainer;
     private JLabel title;
     private JButton decreaseCNB;
@@ -23,6 +24,8 @@ public class SetupWindow {
     private JLabel timeBetweenChordsLabel;
     private JButton startButton;
     private JButton launchChordSelect;
+    private JPanel selectedChordPanel;
+    private JLabel numberOfChordsSelected;
 
     private int numberOfChords;
     private float timeBetweenChords;
@@ -31,96 +34,79 @@ public class SetupWindow {
     private void updateLabels(){
         numberOfChordsLabel.setText(String.valueOf(numberOfChords));
         timeBetweenChordsLabel.setText(String.format("%2.2f",timeBetweenChords));
-
+        numberOfChordsSelected.setText(String.valueOf(chordList.size()));
     }
 
-    public void checkChords(){
+    private void checkChords(){
         if (chordList.isEmpty()){
-            chordList = new ArrayList<String>(Arrays.asList("A", "B", "C","D", "E", "F","G"
-                    ,"Am", "Bm", "Cm","Dm", "Em", "Fm","Gm"));
+            chordList = new ArrayList<>(Arrays.asList("A", "B", "C", "D", "E", "F", "G"
+                    , "Am", "Bm", "Cm", "Dm", "Em", "Fm", "Gm"));
         }
     }
 
 
-    public SetupWindow(){
+    SetupWindow(){
 
         //Initial values.
         numberOfChords = 10;
         timeBetweenChords = 1.f;
-        chordList = new ArrayList<String>(Arrays.asList("A", "B", "C","D", "E", "F","G"
-                ,"Am", "Bm", "Cm","Dm", "Em", "Fm","Gm"));
+        chordList = new ArrayList<>(Arrays.asList("A", "B", "C", "D", "E", "F", "G"
+                , "Am", "Bm", "Cm", "Dm", "Em", "Fm", "Gm"));
         updateLabels();
 
-        decreaseCNB.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (numberOfChords > 1){
-                    numberOfChords--;
-                    updateLabels();
-                } else {
-                    JOptionPane.showMessageDialog(null, "You must have at least one chord.");
-                }
+        decreaseCNB.addActionListener(e -> {
+            if (numberOfChords > 1){
+                numberOfChords--;
+                updateLabels();
+            } else {
+                JOptionPane.showMessageDialog(null, "You must have at least one chord.");
             }
         });
 
-        increaseCNB.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (numberOfChords < 25){
-                    numberOfChords++;
-                    updateLabels();
-                }
+        increaseCNB.addActionListener(e -> {
+            if (numberOfChords < 25){
+                numberOfChords++;
+                updateLabels();
             }
         });
 
-        increaseTBCB.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (timeBetweenChords < 25.0f){
-                    timeBetweenChords += 0.25f;
-                    updateLabels();
-                }
+        increaseTBCB.addActionListener(e -> {
+            if (timeBetweenChords < 25.0f){
+                timeBetweenChords += 0.25f;
+                updateLabels();
             }
         });
 
-        decreaseTBCB.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (timeBetweenChords > .5f){
-                    timeBetweenChords -= 0.25f;
-                    updateLabels();
-                } else {
-                    JOptionPane.showMessageDialog(null, "What are you superhuman? Time between switches must at least be half a second.");
-                }
+        decreaseTBCB.addActionListener(e -> {
+            if (timeBetweenChords > .5f){
+                timeBetweenChords -= 0.25f;
+                updateLabels();
+            } else {
+                JOptionPane.showMessageDialog(null, "What are you superhuman? Time between switches must at least be half a second.");
             }
         });
 
-        startButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                checkChords();
-                Trainer training = new Trainer(numberOfChords, timeBetweenChords, chordList);
-                training.launchWindow();
-                frame.setVisible(false);
+        startButton.addActionListener(e -> {
+            Trainer training = new Trainer(numberOfChords, timeBetweenChords, chordList);
+            training.launchWindow();
+            frame.setVisible(false);
 
-            }
         });
 
-        launchChordSelect.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ChordSelector dialog = new ChordSelector();
-                dialog.pack();
-                dialog.setVisible(true);
+        launchChordSelect.addActionListener(e -> {
+            ChordSelector dialog = new ChordSelector();
+            dialog.pack();
+            dialog.setVisible(true);
 
-                chordList = dialog.getResult();
-            }
+            chordList = dialog.getResult();
+            checkChords();
+            updateLabels();
         });
 
 
     }
 
-    public void launchSetupWindow() {
+    void launchSetupWindow() {
         frame = new JFrame("SetupWindow");
         frame.setTitle("Roy's Guitar Trainer");
         frame.setContentPane(new SetupWindow().GuitarTrainer);
