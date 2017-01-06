@@ -26,6 +26,9 @@ public class SetupWindow {
     private JButton launchChordSelect;
     private JPanel selectedChordPanel;
     private JLabel numberOfChordsSelected;
+    private JButton loadCustomChords;
+    private JPanel chords;
+    private JPanel time;
 
     private int numberOfChords;
     private float timeBetweenChords;
@@ -103,6 +106,11 @@ public class SetupWindow {
             updateLabels();
         });
 
+        loadCustomChords.addActionListener(e -> {
+            CustomChordLoader dialog = new CustomChordLoader();
+            dialog.pack();
+            dialog.setVisible(true);
+        });
 
     }
 
