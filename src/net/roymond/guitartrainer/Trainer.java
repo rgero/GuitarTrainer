@@ -29,7 +29,6 @@ public class Trainer {
             sb.append(s);
             sb.append(" ");
         }
-        System.out.println("1: " + sb.toString());
         return sb.toString();
     }
 

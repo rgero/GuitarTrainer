@@ -69,11 +69,9 @@ public class ChordSelector extends JDialog {
     private void onOK() {
         List<String> selectedChords = new Vector<String>();
         if (!selectedMajorChords.isSelectionEmpty()){
-            System.out.println("Major is not empty");
             selectedChords.addAll(selectedMajorChords.getSelectedValuesList());
         }
         if (!selectedMinorChords.isSelectionEmpty()){
-            System.out.println("Minor is not empty");
             selectedChords.addAll(selectedMinorChords.getSelectedValuesList());
         }
 
@@ -84,6 +82,7 @@ public class ChordSelector extends JDialog {
 
     private void onCancel() {
         // add your code here if necessary
+        this.selectedChords = new Vector<String>();
         dispose();
     }
 

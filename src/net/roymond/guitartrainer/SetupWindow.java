@@ -34,6 +34,13 @@ public class SetupWindow {
 
     }
 
+    public void checkChords(){
+        if (chordList.isEmpty()){
+            chordList = new ArrayList<String>(Arrays.asList("A", "B", "C","D", "E", "F","G"
+                    ,"Am", "Bm", "Cm","Dm", "Em", "Fm","Gm"));
+        }
+    }
+
 
     public SetupWindow(){
 
@@ -91,6 +98,7 @@ public class SetupWindow {
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                checkChords();
                 Trainer training = new Trainer(numberOfChords, timeBetweenChords, chordList);
                 training.launchWindow();
                 frame.setVisible(false);
