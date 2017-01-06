@@ -16,6 +16,9 @@ public class Trainer {
     private JLabel currentChordLabel;
     private JLabel numberOfChordsRemaining;
     private JLabel timeRemaining;
+    private JPanel ChordRemaining;
+    private JPanel timeRemainingPanel;
+    private JPanel currentChordPanel;
 
     private int numChords;
     private float timeBetween;
