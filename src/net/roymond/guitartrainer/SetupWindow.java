@@ -3,6 +3,7 @@ package net.roymond.guitartrainer;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -44,20 +45,21 @@ public class SetupWindow {
 
     private HashMap<String, ImageIcon> initializeDefaultChordMap(){
         HashMap<String, ImageIcon> chordMap = new HashMap<>();
-        chordMap.put("A", new ImageIcon(".\\Chords\\A.png"));
-        chordMap.put("B", new ImageIcon(".\\Chords\\B.png"));
-        chordMap.put("C", new ImageIcon(".\\Chords\\C.png"));
-        chordMap.put("D", new ImageIcon(".\\Chords\\D.png"));
-        chordMap.put("E", new ImageIcon(".\\Chords\\E.png"));
-        chordMap.put("F", new ImageIcon(".\\Chords\\F.png"));
-        chordMap.put("G", new ImageIcon(".\\Chords\\G.png"));
-        chordMap.put("Am", new ImageIcon(".\\Chords\\Am.png"));
-        chordMap.put("Bm", new ImageIcon(".\\Chords\\Bm.png"));
-        chordMap.put("Cm", new ImageIcon(".\\Chords\\Cm.png"));
-        chordMap.put("Dm", new ImageIcon(".\\Chords\\Dm.png"));
-        chordMap.put("Em", new ImageIcon(".\\Chords\\Em.png"));
-        chordMap.put("Fm", new ImageIcon(".\\Chords\\Fm.png"));
-        chordMap.put("Gm", new ImageIcon(".\\Chords\\Gm.png"));
+
+        chordMap.put("A", new ImageIcon(this.getClass().getResource("/net/roymond/chords/A.png")));
+        chordMap.put("B", new ImageIcon(this.getClass().getResource("/net/roymond/chords/B.png")));
+        chordMap.put("C", new ImageIcon(this.getClass().getResource("/net/roymond/chords/C.png")));
+        chordMap.put("D", new ImageIcon(this.getClass().getResource("/net/roymond/chords/D.png")));
+        chordMap.put("E", new ImageIcon(this.getClass().getResource("/net/roymond/chords/E.png")));
+        chordMap.put("F", new ImageIcon(this.getClass().getResource("/net/roymond/chords/F.png")));
+        chordMap.put("G", new ImageIcon(this.getClass().getResource("/net/roymond/chords/G.png")));
+        chordMap.put("Am", new ImageIcon(this.getClass().getResource("/net/roymond/chords/Am.png")));
+        chordMap.put("Bm", new ImageIcon(this.getClass().getResource("/net/roymond/chords/Bm.png")));
+        chordMap.put("Cm", new ImageIcon(this.getClass().getResource("/net/roymond/chords/C.png")));
+        chordMap.put("Dm", new ImageIcon(this.getClass().getResource("/net/roymond/chords/Dm.png")));
+        chordMap.put("Em", new ImageIcon(this.getClass().getResource("/net/roymond/chords/Em.png")));
+        chordMap.put("Fm", new ImageIcon(this.getClass().getResource("/net/roymond/chords/Fm.png")));
+        chordMap.put("Gm", new ImageIcon(this.getClass().getResource("/net/roymond/chords/Gm.png")));
 
         return chordMap;
     }
