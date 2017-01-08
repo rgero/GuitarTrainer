@@ -51,13 +51,13 @@ public class SetupWindow {
         chordMap.put("E", new ImageIcon(".\\Chords\\E.png"));
         chordMap.put("F", new ImageIcon(".\\Chords\\F.png"));
         chordMap.put("G", new ImageIcon(".\\Chords\\G.png"));
-        chordMap.put("Am", new ImageIcon(".\\Chords\\empty.png"));
-        chordMap.put("Bm", new ImageIcon(".\\Chords\\empty.png"));
-        chordMap.put("Cm", new ImageIcon(".\\Chords\\empty.png"));
-        chordMap.put("Dm", new ImageIcon(".\\Chords\\empty.png"));
-        chordMap.put("Em", new ImageIcon(".\\Chords\\empty.png"));
-        chordMap.put("Fm", new ImageIcon(".\\Chords\\empty.png"));
-        chordMap.put("Gm", new ImageIcon(".\\Chords\\empty.png"));
+        chordMap.put("Am", new ImageIcon(".\\Chords\\Am.png"));
+        chordMap.put("Bm", new ImageIcon(".\\Chords\\Bm.png"));
+        chordMap.put("Cm", new ImageIcon(".\\Chords\\Cm.png"));
+        chordMap.put("Dm", new ImageIcon(".\\Chords\\Dm.png"));
+        chordMap.put("Em", new ImageIcon(".\\Chords\\Em.png"));
+        chordMap.put("Fm", new ImageIcon(".\\Chords\\Fm.png"));
+        chordMap.put("Gm", new ImageIcon(".\\Chords\\Gm.png"));
 
         return chordMap;
     }
