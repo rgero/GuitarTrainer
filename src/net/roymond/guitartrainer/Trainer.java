@@ -3,6 +3,7 @@ package net.roymond.guitartrainer;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.List;
 import java.util.Random;
 
@@ -20,6 +21,7 @@ public class Trainer {
     private JPanel ChordRemaining;
     private JPanel timeRemainingPanel;
     private JPanel currentChordPanel;
+    private JLabel imageLabel;
 
     private int numChords;
     private float timeBetween;
@@ -88,6 +90,12 @@ public class Trainer {
             setupWindow.launchSetupWindow();
             trainerFrame.dispose();
         });
+
+
+        ImageIcon imageIcon = new ImageIcon(".\\Chords\\A.png");
+
+        imageLabel.setIcon(imageIcon);
+
 
         chooseNewChord();
         currentChordLabel.setText(currentChord);
