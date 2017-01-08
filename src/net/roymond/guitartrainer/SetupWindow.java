@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -33,11 +34,32 @@ public class SetupWindow {
     private int numberOfChords;
     private float timeBetweenChords;
     private List<String> chordList;
+    private boolean customChords;
 
     private void updateLabels(){
         numberOfChordsLabel.setText(String.valueOf(numberOfChords));
         timeBetweenChordsLabel.setText(String.format("%2.2f",timeBetweenChords));
         numberOfChordsSelected.setText(String.valueOf(chordList.size()));
+    }
+
+    private HashMap<String, ImageIcon> initializeDefaultChordMap(){
+        HashMap<String, ImageIcon> chordMap = new HashMap<>();
+        chordMap.put("A", new ImageIcon(".\\Chords\\A.png"));
+        chordMap.put("B", new ImageIcon(".\\Chords\\B.png"));
+        chordMap.put("C", new ImageIcon(".\\Chords\\C.png"));
+        chordMap.put("D", new ImageIcon(".\\Chords\\D.png"));
+        chordMap.put("E", new ImageIcon(".\\Chords\\E.png"));
+        chordMap.put("F", new ImageIcon(".\\Chords\\F.png"));
+        chordMap.put("G", new ImageIcon(".\\Chords\\G.png"));
+        chordMap.put("Am", new ImageIcon(".\\Chords\\empty.png"));
+        chordMap.put("Bm", new ImageIcon(".\\Chords\\empty.png"));
+        chordMap.put("Cm", new ImageIcon(".\\Chords\\empty.png"));
+        chordMap.put("Dm", new ImageIcon(".\\Chords\\empty.png"));
+        chordMap.put("Em", new ImageIcon(".\\Chords\\empty.png"));
+        chordMap.put("Fm", new ImageIcon(".\\Chords\\empty.png"));
+        chordMap.put("Gm", new ImageIcon(".\\Chords\\empty.png"));
+
+        return chordMap;
     }
 
     private void checkChords(){
@@ -56,6 +78,7 @@ public class SetupWindow {
         chordList = new ArrayList<>(Arrays.asList("A", "B", "C", "D", "E", "F", "G"
                 , "Am", "Bm", "Cm", "Dm", "Em", "Fm", "Gm"));
         updateLabels();
+        customChords = false;
 
         decreaseCNB.addActionListener(e -> {
             if (numberOfChords > 1){
@@ -90,7 +113,15 @@ public class SetupWindow {
         });
 
         startButton.addActionListener(e -> {
-            Trainer training = new Trainer(numberOfChords, timeBetweenChords, chordList);
+            HashMap<String, ImageIcon> chordMap = null;
+            if (customChords) {
+                //TODO Custom chord
+            } else {
+                chordMap = initializeDefaultChordMap();
+            }
+
+
+            Trainer training = new Trainer(numberOfChords, timeBetweenChords, chordList, chordMap);
             training.launchWindow();
             frame.setVisible(false);
 
@@ -110,6 +141,9 @@ public class SetupWindow {
             CustomChordLoader dialog = new CustomChordLoader();
             dialog.pack();
             dialog.setVisible(true);
+
+            //TODO: Return customChords True when data is returned
+
         });
 
     }

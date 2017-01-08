@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -22,6 +23,7 @@ public class Trainer {
     private JPanel timeRemainingPanel;
     private JPanel currentChordPanel;
     private JLabel imageLabel;
+    private ImageIcon imageIcon;
 
     private int numChords;
     private float timeBetween;
@@ -30,16 +32,7 @@ public class Trainer {
     private String currentChord;
     private Random rand;
     private Timer timer;
-
-
-    private String processChordList(){
-        StringBuilder sb = new StringBuilder();
-        for(String s : chordList){
-            sb.append(s);
-            sb.append(" ");
-        }
-        return sb.toString();
-    }
+    private HashMap<String, ImageIcon> chordMap;
 
     private void chooseNewChord(){
         String tempSelected = currentChord;
@@ -51,6 +44,10 @@ public class Trainer {
             tempSelected = chordList.get(0);
         }
         currentChord = tempSelected;
+        currentChordLabel.setText(currentChord);
+        if ( !chordMap.get(currentChord).equals(null) ){
+            imageLabel.setIcon(chordMap.get(currentChord));
+        }
     }
 
     private void runTimer(){
@@ -61,8 +58,9 @@ public class Trainer {
             if (time <= .011) {
                 numChords--;
                 chooseNewChord();
-                currentChordLabel.setText(currentChord);
+
                 numberOfChordsRemaining.setText(String.valueOf(numChords));
+
                 time = timeBetween;
                 if (numChords < 1){
                     timer.stop();
@@ -77,12 +75,13 @@ public class Trainer {
     }
 
 
-    public Trainer(int numChords, float timeBetween, List<String> chordList){
+    public Trainer(int numChords, float timeBetween, List<String> chordList, HashMap<String, ImageIcon> map){
 
         this.numChords = numChords;
         this.timeBetween = timeBetween;
         this.chordList = chordList;
         this.currentChord = "";
+        this.chordMap = map;
         this.rand = new Random();
 
         backToSetupButton.addActionListener(e -> {
@@ -91,14 +90,7 @@ public class Trainer {
             trainerFrame.dispose();
         });
 
-
-        ImageIcon imageIcon = new ImageIcon(".\\Chords\\A.png");
-
-        imageLabel.setIcon(imageIcon);
-
-
         chooseNewChord();
-        currentChordLabel.setText(currentChord);
 
         runTimer();
     }
