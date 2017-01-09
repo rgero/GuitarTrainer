@@ -37,12 +37,22 @@ public class SetupWindow {
     private List<String> chordList;
     private boolean customChords;
 
+    /**
+     * This function updates all of the appropriate labels on the window
+     */
     private void updateLabels(){
         numberOfChordsLabel.setText(String.valueOf(numberOfChords));
         timeBetweenChordsLabel.setText(String.format("%2.2f",timeBetweenChords));
         numberOfChordsSelected.setText(String.valueOf(chordList.size()));
     }
 
+
+    /**
+     * This function creates the default hashmap that contains all the chords
+     * supported out of the box. This can be overwritten if the user specifies
+     * a "Custom Chord" directory.
+     * @return Hashmap of default chords.
+     */
     private HashMap<String, ImageIcon> initializeDefaultChordMap(){
         HashMap<String, ImageIcon> chordMap = new HashMap<>();
 
@@ -64,14 +74,6 @@ public class SetupWindow {
         return chordMap;
     }
 
-    private void checkChords(){
-        if (chordList.isEmpty()){
-            chordList = new ArrayList<>(Arrays.asList("A", "B", "C", "D", "E", "F", "G"
-                    , "Am", "Bm", "Cm", "Dm", "Em", "Fm", "Gm"));
-        }
-    }
-
-
     SetupWindow(){
 
         //Initial values.
@@ -82,26 +84,37 @@ public class SetupWindow {
         updateLabels();
         customChords = false;
 
+        //Action Listeners for the buttons.
         decreaseCNB.addActionListener(e -> {
             if (numberOfChords > 1){
                 numberOfChords--;
                 updateLabels();
             } else {
+
+                //Present a popup window to the user when they try to enter invalid ranges.
                 JOptionPane.showMessageDialog(null, "You must have at least one chord.");
             }
         });
+
 
         increaseCNB.addActionListener(e -> {
             if (numberOfChords < 25){
                 numberOfChords++;
                 updateLabels();
+            } else {
+                //Present a popup window to the user when they try to enter invalid ranges.
+                JOptionPane.showMessageDialog(null, "The current limit is 25 chords.");
             }
         });
+
 
         increaseTBCB.addActionListener(e -> {
             if (timeBetweenChords < 25.0f){
                 timeBetweenChords += 0.25f;
                 updateLabels();
+            } else {
+                //Present a popup window to the user when they try to enter invalid ranges.
+                JOptionPane.showMessageDialog(null, "25 seconds is a long time.");
             }
         });
 
@@ -110,10 +123,11 @@ public class SetupWindow {
                 timeBetweenChords -= 0.25f;
                 updateLabels();
             } else {
-                JOptionPane.showMessageDialog(null, "What are you superhuman? Time between switches must at least be half a second.");
+                JOptionPane.showMessageDialog(null, "What are you superhuman? Time between chords must at least be half a second.");
             }
         });
 
+        //This action listener will initialize the chord map and then launch the "Training Window"
         startButton.addActionListener(e -> {
             HashMap<String, ImageIcon> chordMap = null;
             if (customChords) {
@@ -129,16 +143,37 @@ public class SetupWindow {
 
         });
 
+        // This action listener will launch the chord selection window.
+        // Currently this will not have support for the custom chords
+        //      TODO: Investigate the potential of doing this?
         launchChordSelect.addActionListener(e -> {
             ChordSelector dialog = new ChordSelector();
             dialog.pack();
             dialog.setVisible(true);
 
-            chordList = dialog.getResult();
-            checkChords();
+
+            List<String> updatedSelection = dialog.getResult();
+            if (!updatedSelection.isEmpty())
+            {
+                chordList = updatedSelection;
+            }
+
             updateLabels();
         });
 
+
+        //TODO: Implement this fully.
+        /* Current idea for strategy:
+                Input - Directory and file type
+                Execution - Parse through the folder looking for the file types.
+                            Get the names from the files
+                            Create a chord map of those names and files
+                            Create a chord list (potentially)
+                Returns - Chord Map and Chord List.
+                    - We'll need the chord map so the trainer can load the images
+                    - Ideally if we have the chord list then we can let the user
+                      limit their selection
+         */
         loadCustomChords.addActionListener(e -> {
             CustomChordLoader dialog = new CustomChordLoader();
             dialog.pack();
