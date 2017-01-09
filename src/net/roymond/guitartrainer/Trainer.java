@@ -117,7 +117,7 @@ public class Trainer {
     }
 
 
-    public Trainer(int numChords, float timeBetween, List<String> chordList, HashMap<String, ImageIcon> map){
+    public Trainer(JFrame parent, int numChords, float timeBetween, List<String> chordList, HashMap<String, ImageIcon> map){
 
         this.numChords = numChords;
         this.timeBetween = timeBetween;
@@ -132,8 +132,7 @@ public class Trainer {
         countdownDelay = 1;
 
         backToSetupButton.addActionListener(e -> {
-            SetupWindow setupWindow = new SetupWindow();
-            setupWindow.launchSetupWindow();
+            parent.setVisible(true);
             trainerFrame.dispose();
         });
 

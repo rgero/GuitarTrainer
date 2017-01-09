@@ -23,16 +23,24 @@ public class ChordSelector extends JDialog {
     private JList customChordList;
     private List<String> selectedChords;
 
+    private boolean customChordsEnabled;
+
     ChordSelector(List<String> customChords) {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
         this.setTitle("Select your chords");
         this.setResizable(false);
+        customChordsEnabled = false;
 
-        customChordPanel.setVisible(customChords.size()>0);
-        for(String i : customChords){
-            customChordList.add(i, null);
+        if(customChords.size()>0) {
+            customChordPanel.setVisible(true);
+            DefaultListModel<String> listModel = new DefaultListModel<>();
+            for (String i : customChords) {
+                listModel.addElement(i);
+            }
+            customChordList.setModel(listModel);
+            customChordsEnabled = true;
         }
 
 
@@ -56,11 +64,17 @@ public class ChordSelector extends JDialog {
         clearAll.addActionListener(e -> {
             selectedMajorChords.clearSelection();
             selectedMinorChords.clearSelection();
+            if(customChordsEnabled) {
+                customChordList.clearSelection();
+            }
         });
 
         selectAll.addActionListener(e -> {
             selectedMajorChords.addSelectionInterval(0, selectedMajorChords.getLastVisibleIndex());
             selectedMinorChords.addSelectionInterval(0, selectedMinorChords.getLastVisibleIndex());
+            if(customChordsEnabled) {
+                customChordList.addSelectionInterval(0, customChordList.getLastVisibleIndex());
+            }
         });
 
     }
@@ -72,6 +86,9 @@ public class ChordSelector extends JDialog {
         }
         if (!selectedMinorChords.isSelectionEmpty()){
             selectedChords.addAll(selectedMinorChords.getSelectedValuesList());
+        }
+        if (customChordsEnabled && !customChordList.isSelectionEmpty()){
+            selectedChords.addAll(customChordList.getSelectedValuesList());
         }
 
         this.selectedChords = selectedChords;

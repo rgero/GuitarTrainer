@@ -137,7 +137,7 @@ public class SetupWindow {
 
         //This action listener will initialize the chord map and then launch the "Training Window"
         startButton.addActionListener(e -> {
-            Trainer training = new Trainer(numberOfChords, timeBetweenChords, chordList, chordMap);
+            Trainer training = new Trainer(frame, numberOfChords, timeBetweenChords, chordList, chordMap);
             training.launchWindow();
             frame.setVisible(false);
 
@@ -180,13 +180,14 @@ public class SetupWindow {
             dialog.setVisible(true);
 
             List<Chord> data = dialog.getResults();
+            System.out.println(data);
             if (data.size()>0){
                 for (Chord i : data){
                     chordMap.put(i.name, i.image);
                     customChordList.add(i.name);
                 }
             }
-
+            System.out.println();
 
 
         });

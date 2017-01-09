@@ -25,7 +25,7 @@ public class CustomChordLoader extends JDialog {
     private List<Chord> results;
 
     CustomChordLoader(String inputDir, String fileExt) {
-
+        this.results = new ArrayList<>();
         this.inputDir = inputDir;
         this.fileExt = fileExt;
 
@@ -90,11 +90,7 @@ public class CustomChordLoader extends JDialog {
 
     private void loadChords(){
         File dir = new File(inputDir);
-        File[] files = dir.listFiles(new FilenameFilter() {
-            public boolean accept(File dir, String name) {
-                return name.toLowerCase().endsWith(fileExt);
-            }
-        });
+        File[] files = dir.listFiles((dir1, filename) -> filename.endsWith(fileExt));
         for(File f : files){
             int lastPeriod = f.getName().lastIndexOf('.');
             String name = f.getName().substring(0,lastPeriod);
