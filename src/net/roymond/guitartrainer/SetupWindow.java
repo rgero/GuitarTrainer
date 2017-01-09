@@ -35,8 +35,9 @@ public class SetupWindow {
     private int numberOfChords;
     private float timeBetweenChords;
     private List<String> chordList;
+    private HashMap<String, ImageIcon> chordMap;
 
-    private boolean customChords;
+    private List<String> customChordList;
     private String inputDir;
     private String fileExt;
 
@@ -84,8 +85,10 @@ public class SetupWindow {
         timeBetweenChords = 10.f;
         chordList = new ArrayList<>(Arrays.asList("A", "B", "C", "D", "E", "F", "G"
                 , "Am", "Bm", "Cm", "Dm", "Em", "Fm", "Gm"));
+        chordMap = initializeDefaultChordMap();
         updateLabels();
-        customChords = false;
+
+        customChordList = new ArrayList<>();
         inputDir = "";
         fileExt = "";
 
@@ -134,14 +137,6 @@ public class SetupWindow {
 
         //This action listener will initialize the chord map and then launch the "Training Window"
         startButton.addActionListener(e -> {
-            HashMap<String, ImageIcon> chordMap = null;
-            if (customChords) {
-                //TODO Custom chord
-            } else {
-                chordMap = initializeDefaultChordMap();
-            }
-
-
             Trainer training = new Trainer(numberOfChords, timeBetweenChords, chordList, chordMap);
             training.launchWindow();
             frame.setVisible(false);
@@ -152,7 +147,7 @@ public class SetupWindow {
         // Currently this will not have support for the custom chords
         //      TODO: Investigate the potential of doing this?
         launchChordSelect.addActionListener(e -> {
-            ChordSelector dialog = new ChordSelector(customChords);
+            ChordSelector dialog = new ChordSelector(customChordList);
             dialog.pack();
             dialog.setVisible(true);
 
@@ -180,15 +175,16 @@ public class SetupWindow {
                       limit their selection
          */
         loadCustomChords.addActionListener(e -> {
-            CustomChordLoader dialog = new CustomChordLoader(customChords, inputDir, fileExt);
+            CustomChordLoader dialog = new CustomChordLoader( inputDir, fileExt);
             dialog.pack();
             dialog.setVisible(true);
 
-            String[] data = dialog.getResults();
-            if (data != null) {
-                customChords = Boolean.valueOf(data[0]);
-                inputDir = data[1];
-                fileExt = data[2];
+            List<Chord> data = dialog.getResults();
+            if (data.size()>0){
+                for (Chord i : data){
+                    chordMap.put(i.name, i.image);
+                    customChordList.add(i.name);
+                }
             }
 
 

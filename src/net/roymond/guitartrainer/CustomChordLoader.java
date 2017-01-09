@@ -3,6 +3,9 @@ package net.roymond.guitartrainer;
 import javax.swing.*;
 import java.awt.event.*;
 import java.io.File;
+import java.io.FilenameFilter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CustomChordLoader extends JDialog {
     private JPanel contentPane;
@@ -18,13 +21,11 @@ public class CustomChordLoader extends JDialog {
     private ButtonGroup fileTypeButtonGroup;
 
     private String inputDir;
-    private boolean customChords;
     private String fileExt;
-    private String[] results;
+    private List<Chord> results;
 
-    CustomChordLoader(boolean customChords, String inputDir, String fileExt) {
+    CustomChordLoader(String inputDir, String fileExt) {
 
-        this.customChords = customChords;
         this.inputDir = inputDir;
         this.fileExt = fileExt;
 
@@ -39,7 +40,6 @@ public class CustomChordLoader extends JDialog {
         fileTypeButtonGroup.add(pngButton);
         fileTypeButtonGroup.add(jpgButton);
 
-        customChords = false;
 
         if (inputDir != null && !inputDir.isEmpty()){
             inputDirectory.setText(inputDir);
@@ -67,7 +67,7 @@ public class CustomChordLoader extends JDialog {
         clearButton.addActionListener(e -> {
             fileTypeButtonGroup.clearSelection();
             inputDirectory.setText("");
-            this.customChords = false;
+            this.results.clear();
             this.inputDir = "";
             this.fileExt = "";
         });
@@ -88,25 +88,39 @@ public class CustomChordLoader extends JDialog {
         contentPane.registerKeyboardAction(e -> onCancel(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
+    private void loadChords(){
+        File dir = new File(inputDir);
+        File[] files = dir.listFiles(new FilenameFilter() {
+            public boolean accept(File dir, String name) {
+                return name.toLowerCase().endsWith(fileExt);
+            }
+        });
+        for(File f : files){
+            int lastPeriod = f.getName().lastIndexOf('.');
+            String name = f.getName().substring(0,lastPeriod);
+            results.add(new Chord(name, new ImageIcon(f.getAbsolutePath())));
+        }
+
+    }
+
     private void onOK() {
         // validation needed.
         String testDir = inputDirectory.getText();
         if (new File(testDir).isDirectory()) {
             if (fileTypeButtonGroup.getSelection() != null) {
                 inputDir = testDir;
-                customChords = true;
                 if (pngButton.isSelected()) {
-                    fileExt = "png";
+                    fileExt = ".png";
                 } else if (jpgButton.isSelected()) {
-                    fileExt = "jpg";
+                    fileExt = ".jpg";
                 }
-                results = new String[]{String.valueOf(customChords),inputDir,fileExt};
+                loadChords();
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Select a file extension.");
             }
         } else if (!pngButton.isSelected() || !jpgButton.isSelected()) {
-            results = new String[]{"false","",""};
+            results = new ArrayList<Chord>();
             dispose();
         } else {
             JOptionPane.showMessageDialog(null, "No Import Directory selected");
@@ -119,7 +133,7 @@ public class CustomChordLoader extends JDialog {
         dispose();
     }
 
-    String[] getResults(){
+    List<Chord> getResults(){
         return results;
     }
 }

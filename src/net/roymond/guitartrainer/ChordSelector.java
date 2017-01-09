@@ -23,14 +23,17 @@ public class ChordSelector extends JDialog {
     private JList customChordList;
     private List<String> selectedChords;
 
-    ChordSelector(boolean customChords) {
+    ChordSelector(List<String> customChords) {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
         this.setTitle("Select your chords");
         this.setResizable(false);
 
-        customChordPanel.setVisible(customChords);
+        customChordPanel.setVisible(customChords.size()>0);
+        for(String i : customChords){
+            customChordList.add(i, null);
+        }
 
 
 
