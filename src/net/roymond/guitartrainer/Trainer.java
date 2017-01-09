@@ -34,13 +34,23 @@ public class Trainer {
     private Timer timer;
     private HashMap<String, ImageIcon> chordMap;
 
+    private boolean countdown;
+    private int countdownStart;
+    private int currentCountDown;
+    private float countdownDelay;
+
+
     private void chooseNewChord(){
         String tempSelected = currentChord;
+
         if (chordList.size() > 1) {
+            // This while loop is to make sure the same chord isn't selected
+            // twice.
             while (tempSelected.equals(currentChord)) {
                 tempSelected = chordList.get(rand.nextInt(chordList.size()));
             }
         } else {
+            // If only one chord is selected, it should be repeatedly selected.
             tempSelected = chordList.get(0);
         }
         currentChord = tempSelected;
@@ -51,24 +61,56 @@ public class Trainer {
     }
 
     private void runTimer(){
-        time = timeBetween;
+        time = countdownDelay;
         int delay = 10;
         numberOfChordsRemaining.setText(String.valueOf(numChords));
+
         timer = new Timer(delay, e -> {
-            if (time <= .011) {
-                numChords--;
-                chooseNewChord();
-
-                numberOfChordsRemaining.setText(String.valueOf(numChords));
-
-                time = timeBetween;
-                if (numChords < 1){
-                    timer.stop();
+            /*
+                To establish a countdown at the beginning of the exercise, I've added this boolean.
+                Once the countdown is completed, the boolean gets marked false,
+                and the actual exercise will begine.
+             */
+            if (countdown){
+                if (time <= 0.11){
+                    time = countdownDelay;
+                    currentCountDown--;
+                    if (currentCountDown < 1){
+                        countdown = false;
+                        time = timeBetween;
+                        imageLabel.setText("");
+                        // I have to choose a new chord here, or else the image will be over the text.
+                        chooseNewChord();
+                    }
+                } else {
+                    imageLabel.setText(String.valueOf(currentCountDown));
+                    currentChordLabel.setText("Get Ready");
+                    time -= 0.01;
                 }
             } else {
-                time -= 0.01;
+                if (time <= .011) {
+                    numChords--;
+                    if (numChords < 1){
+                        // Exercise is completed here. I'm clearing the values here before stopping the timer.
+                        currentChordLabel.setText("Exercise Completed!");
+                        imageLabel.setIcon(null);
+                        imageLabel.setText("Congrats");
+                        numberOfChordsRemaining.setText("");
+                        timeRemaining.setText("");
+                        timer.stop();
+                    } else {
+                        chooseNewChord();
+                        numberOfChordsRemaining.setText(String.valueOf(numChords));
+                        time = timeBetween;
+                    }
+                } else {
+                    time -= 0.01;
+                    timeRemaining.setText(String.format("%.2f", time));
+                }
+
             }
-            timeRemaining.setText(String.format("%.2f", time));
+
+
         });
 
         timer.start();
@@ -84,13 +126,16 @@ public class Trainer {
         this.chordMap = map;
         this.rand = new Random();
 
+        countdownStart = 3;
+        currentCountDown = countdownStart;
+        countdown = true;
+        countdownDelay = 1;
+
         backToSetupButton.addActionListener(e -> {
             SetupWindow setupWindow = new SetupWindow();
             setupWindow.launchSetupWindow();
             trainerFrame.dispose();
         });
-
-        chooseNewChord();
 
         runTimer();
     }

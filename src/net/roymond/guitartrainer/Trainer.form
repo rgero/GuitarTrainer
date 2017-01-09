@@ -79,7 +79,7 @@
             </constraints>
             <properties>
               <horizontalAlignment value="0"/>
-              <text value="Label"/>
+              <text value=""/>
             </properties>
           </component>
         </children>
@@ -118,6 +118,9 @@
               </grid>
             </constraints>
             <properties>
+              <font size="55" style="1"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
               <text value=""/>
             </properties>
           </component>
