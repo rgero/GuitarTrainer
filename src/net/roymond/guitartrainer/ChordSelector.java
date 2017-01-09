@@ -27,6 +27,8 @@ public class ChordSelector extends JDialog {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
+        this.setTitle("Select your chords");
+        this.setResizable(false);
 
         customChordPanel.setVisible(customChords);
 

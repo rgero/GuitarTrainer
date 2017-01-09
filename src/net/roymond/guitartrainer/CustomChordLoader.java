@@ -22,13 +22,14 @@ public class CustomChordLoader extends JDialog {
     private String fileExt;
     private String[] results;
 
-    public CustomChordLoader(boolean customChords, String inputDir, String fileExt) {
+    CustomChordLoader(boolean customChords, String inputDir, String fileExt) {
 
         this.customChords = customChords;
         this.inputDir = inputDir;
         this.fileExt = fileExt;
 
         setTitle("Loading Custom Chords");
+        setResizable(false);
 
         setContentPane(contentPane);
         setModal(true);
@@ -118,7 +119,7 @@ public class CustomChordLoader extends JDialog {
         dispose();
     }
 
-    public String[] getResults(){
+    String[] getResults(){
         return results;
     }
 }

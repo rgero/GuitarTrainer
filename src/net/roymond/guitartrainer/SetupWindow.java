@@ -45,7 +45,7 @@ public class SetupWindow {
      */
     private void updateLabels(){
         numberOfChordsLabel.setText(String.valueOf(numberOfChords));
-        timeBetweenChordsLabel.setText(String.format("%2.2f",timeBetweenChords));
+        timeBetweenChordsLabel.setText(String.format("%2.2fs",timeBetweenChords));
         numberOfChordsSelected.setText(String.valueOf(chordList.size()));
     }
 
