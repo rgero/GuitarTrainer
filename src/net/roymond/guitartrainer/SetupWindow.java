@@ -152,7 +152,7 @@ public class SetupWindow {
         // Currently this will not have support for the custom chords
         //      TODO: Investigate the potential of doing this?
         launchChordSelect.addActionListener(e -> {
-            ChordSelector dialog = new ChordSelector();
+            ChordSelector dialog = new ChordSelector(customChords);
             dialog.pack();
             dialog.setVisible(true);
 
