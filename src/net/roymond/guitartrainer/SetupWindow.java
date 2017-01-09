@@ -35,7 +35,10 @@ public class SetupWindow {
     private int numberOfChords;
     private float timeBetweenChords;
     private List<String> chordList;
+
     private boolean customChords;
+    private String inputDir;
+    private String fileExt;
 
     /**
      * This function updates all of the appropriate labels on the window
@@ -83,6 +86,8 @@ public class SetupWindow {
                 , "Am", "Bm", "Cm", "Dm", "Em", "Fm", "Gm"));
         updateLabels();
         customChords = false;
+        inputDir = "";
+        fileExt = "";
 
         //Action Listeners for the buttons.
         decreaseCNB.addActionListener(e -> {
@@ -175,11 +180,18 @@ public class SetupWindow {
                       limit their selection
          */
         loadCustomChords.addActionListener(e -> {
-            CustomChordLoader dialog = new CustomChordLoader();
+            CustomChordLoader dialog = new CustomChordLoader(customChords, inputDir, fileExt);
             dialog.pack();
             dialog.setVisible(true);
 
-            //TODO: Return customChords True when data is returned
+            String[] data = dialog.getResults();
+            if (data != null) {
+                customChords = Boolean.valueOf(data[0]);
+                inputDir = data[1];
+                fileExt = data[2];
+            }
+
+
 
         });
 

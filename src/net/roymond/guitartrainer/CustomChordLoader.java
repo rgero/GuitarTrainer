@@ -2,19 +2,74 @@ package net.roymond.guitartrainer;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.File;
 
 public class CustomChordLoader extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
+    private JTextField inputDirectory;
+    private JButton browseButton;
+    private JPanel directoryPanel;
+    private JPanel FileTypePanel;
+    private JRadioButton pngButton;
+    private JRadioButton jpgButton;
+    private JButton clearButton;
+    private ButtonGroup fileTypeButtonGroup;
 
-    public CustomChordLoader() {
+    private String inputDir;
+    private boolean customChords;
+    private String fileExt;
+    private String[] results;
+
+    public CustomChordLoader(boolean customChords, String inputDir, String fileExt) {
+
+        this.customChords = customChords;
+        this.inputDir = inputDir;
+        this.fileExt = fileExt;
 
         setTitle("Loading Custom Chords");
 
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
+
+        fileTypeButtonGroup = new ButtonGroup();
+        fileTypeButtonGroup.add(pngButton);
+        fileTypeButtonGroup.add(jpgButton);
+
+        customChords = false;
+
+        if (inputDir != null && !inputDir.isEmpty()){
+            inputDirectory.setText(inputDir);
+        }
+        if (fileExt.equals("png")){
+            pngButton.setSelected(true);
+        }
+        if (fileExt.equals("jpg")){
+            jpgButton.setSelected(true);
+        }
+
+        browseButton.addActionListener(e -> {
+            JFileChooser exportDirChooser = new JFileChooser();
+            exportDirChooser.setCurrentDirectory(new File("."));
+            exportDirChooser.setDialogTitle("Select an export directory");
+            exportDirChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            exportDirChooser.setAcceptAllFileFilterUsed(false);
+            int returnVal = exportDirChooser.showOpenDialog(this);
+            if(returnVal == JFileChooser.APPROVE_OPTION) {
+                String exportPath = exportDirChooser.getSelectedFile().getAbsolutePath();
+                inputDirectory.setText(exportPath);
+            }
+        });
+
+        clearButton.addActionListener(e -> {
+            fileTypeButtonGroup.clearSelection();
+            inputDirectory.setText("");
+            this.customChords = false;
+            this.inputDir = "";
+            this.fileExt = "";
+        });
 
         buttonOK.addActionListener(e -> onOK());
 
@@ -33,12 +88,37 @@ public class CustomChordLoader extends JDialog {
     }
 
     private void onOK() {
-        // add your code here
-        dispose();
+        // validation needed.
+        String testDir = inputDirectory.getText();
+        if (new File(testDir).isDirectory()) {
+            if (fileTypeButtonGroup.getSelection() != null) {
+                inputDir = testDir;
+                customChords = true;
+                if (pngButton.isSelected()) {
+                    fileExt = "png";
+                } else if (jpgButton.isSelected()) {
+                    fileExt = "jpg";
+                }
+                results = new String[]{String.valueOf(customChords),inputDir,fileExt};
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Select a file extension.");
+            }
+        } else if (!pngButton.isSelected() || !jpgButton.isSelected()) {
+            results = new String[]{"false","",""};
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "No Import Directory selected");
+        }
+
     }
 
     private void onCancel() {
-        // add your code here if necessary
+        results = null;
         dispose();
+    }
+
+    public String[] getResults(){
+        return results;
     }
 }
