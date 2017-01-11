@@ -182,12 +182,11 @@ public class SetupWindow {
             List<Chord> data = dialog.getResults();
             System.out.println(data);
             if (data.size()>0){
-                for (Chord i : data){
-                    chordMap.put(i.name, i.image);
-                    customChordList.add(i.name);
+                for (Chord customChord : data){
+                    chordMap.put(customChord.getName(), customChord.getImage());
+                    customChordList.add(customChord.getName());
                 }
             }
-            System.out.println();
 
 
         });
