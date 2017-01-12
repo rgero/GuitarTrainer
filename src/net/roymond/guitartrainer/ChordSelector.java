@@ -25,6 +25,10 @@ public class ChordSelector extends JDialog {
 
     private boolean customChordsEnabled;
 
+    /***
+     * This is the Constructor for this class.
+     * @param customChords - These would be the custom chords if any have been loaded
+     */
     ChordSelector(List<String> customChords) {
         setContentPane(contentPane);
         setModal(true);
@@ -42,9 +46,6 @@ public class ChordSelector extends JDialog {
             customChordList.setModel(listModel);
             customChordsEnabled = true;
         }
-
-
-
 
         buttonOK.addActionListener(e -> onOK());
 
@@ -79,6 +80,11 @@ public class ChordSelector extends JDialog {
 
     }
 
+    /***
+     * This is the function that is called when the user clicks the OK Button.
+     * It processes the user's selection and generates a list of strings that
+     * can be called from the SetupWindow.
+     */
     private void onOK() {
         List<String> selectedChords = new Vector<>();
         if (!selectedMajorChords.isSelectionEmpty()){
@@ -102,6 +108,11 @@ public class ChordSelector extends JDialog {
         dispose();
     }
 
+    /***
+     * This function is called from the Setup Window in order to get the user's
+     * selection after the window has been dismissed
+     * @return List<String> Selected Chords
+     */
     List<String> getResult(){
         return this.selectedChords;
     }

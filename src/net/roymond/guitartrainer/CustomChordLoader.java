@@ -88,6 +88,12 @@ public class CustomChordLoader extends JDialog {
         contentPane.registerKeyboardAction(e -> onCancel(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
+    /***
+     *  This looks into the directory. It looks for all files with an extension
+     *  It'll create a custom chord object and add it to a list.
+     *
+     *  This list will be stored and available to the setup window as a result.
+     */
     private void loadChords(){
         File dir = new File(inputDir);
         File[] files = dir.listFiles((dir1, filename) -> filename.endsWith(fileExt));
@@ -100,7 +106,17 @@ public class CustomChordLoader extends JDialog {
     }
 
     private void onOK() {
-        // validation needed.
+
+        /*
+            Validation works like this:
+                - Checks to see if the directory is real
+                    - If it is empty or invalid, a message is presented
+                - Checks to see if the user has selected a file type
+                    - If neither is selected, a message is presented
+                - Proceeds
+
+                Edge Case: If nothing is selected, nothing should be updated.
+         */
         String testDir = inputDirectory.getText();
         if (new File(testDir).isDirectory()) {
             if (fileTypeButtonGroup.getSelection() != null) {
@@ -119,7 +135,7 @@ public class CustomChordLoader extends JDialog {
             results = new ArrayList<Chord>();
             dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "No Import Directory selected");
+            JOptionPane.showMessageDialog(null, "No Valid Import Directory selected");
         }
 
     }

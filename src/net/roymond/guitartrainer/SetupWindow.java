@@ -144,8 +144,6 @@ public class SetupWindow {
         });
 
         // This action listener will launch the chord selection window.
-        // Currently this will not have support for the custom chords
-        //      TODO: Investigate the potential of doing this?
         launchChordSelect.addActionListener(e -> {
             ChordSelector dialog = new ChordSelector(customChordList);
             dialog.pack();
@@ -161,8 +159,6 @@ public class SetupWindow {
             updateLabels();
         });
 
-
-        //TODO: Implement this fully.
         /* Current idea for strategy:
                 Input - Directory and file type
                 Execution - Parse through the folder looking for the file types.
