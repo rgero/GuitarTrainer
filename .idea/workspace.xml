@@ -10,7 +10,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/roymond/guitartrainer/ChordSelector.java" afterPath="$PROJECT_DIR$/src/net/roymond/guitartrainer/ChordSelector.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/roymond/guitartrainer/CustomChordLoader.java" afterPath="$PROJECT_DIR$/src/net/roymond/guitartrainer/CustomChordLoader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/roymond/guitartrainer/SetupWindow.java" afterPath="$PROJECT_DIR$/src/net/roymond/guitartrainer/SetupWindow.java" />
     </list>
     <ignored path="GuitarTrainer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -667,7 +666,14 @@
       <option name="project" value="LOCAL" />
       <updated>1484186566510</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Added a check for null on the function &quot;loadCustomChord&quot;">
+      <created>1484278219890</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1484278219890</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -777,7 +783,8 @@
     <MESSAGE value="I don't like the idea of directly accessing variables, even if they are in the same package. So I added a getter for the Name and Image." />
     <MESSAGE value="Updating the readme." />
     <MESSAGE value="Updating comments and removing invalid ToDo's" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updating comments and removing invalid ToDo's" />
+    <MESSAGE value="Added a check for null on the function &quot;loadCustomChord&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a check for null on the function &quot;loadCustomChord&quot;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

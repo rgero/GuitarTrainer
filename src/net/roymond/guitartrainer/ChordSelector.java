@@ -36,6 +36,8 @@ public class ChordSelector extends JDialog {
         this.setTitle("Select your chords");
         this.setResizable(false);
         customChordsEnabled = false;
+        customChordPanel.setVisible(false);
+
 
         if(customChords.size()>0) {
             customChordPanel.setVisible(true);
@@ -46,6 +48,8 @@ public class ChordSelector extends JDialog {
             customChordList.setModel(listModel);
             customChordsEnabled = true;
         }
+
+
 
         buttonOK.addActionListener(e -> onOK());
 

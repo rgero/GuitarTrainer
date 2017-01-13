@@ -1,9 +1,13 @@
 package net.roymond.guitartrainer;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FilenameFilter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,7 +104,17 @@ public class CustomChordLoader extends JDialog {
         for(File f : files){
             int lastPeriod = f.getName().lastIndexOf('.');
             String name = f.getName().substring(0,lastPeriod);
-            results.add(new Chord(name, new ImageIcon(f.getAbsolutePath())));
+
+            BufferedImage loadedImage = null;
+            try {
+                loadedImage = ImageIO.read(f);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+
+            results.add(new Chord(name, new ImageIcon(loadedImage.getScaledInstance(340, 416, Image.SCALE_DEFAULT))));
         }
 
     }
