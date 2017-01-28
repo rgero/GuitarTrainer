@@ -145,7 +145,7 @@ public class SetupWindow {
 
         // This action listener will launch the chord selection window.
         launchChordSelect.addActionListener(e -> {
-            ChordSelector dialog = new ChordSelector(customChordList);
+            ChordSelector dialog = new ChordSelector(customChordList, chordList);
             dialog.pack();
             dialog.setVisible(true);
 

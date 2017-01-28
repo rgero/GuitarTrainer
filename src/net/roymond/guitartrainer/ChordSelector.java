@@ -22,6 +22,7 @@ public class ChordSelector extends JDialog {
     private JPanel minorChordPanel;
     private JList customChordList;
     private List<String> selectedChords;
+    private List<String> previouslySelected;
 
     private boolean customChordsEnabled;
 
@@ -29,7 +30,7 @@ public class ChordSelector extends JDialog {
      * This is the Constructor for this class.
      * @param customChords - These would be the custom chords if any have been loaded
      */
-    ChordSelector(List<String> customChords) {
+    ChordSelector(List<String> customChords, List<String> inputChordList) {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -37,9 +38,9 @@ public class ChordSelector extends JDialog {
         this.setResizable(false);
         customChordsEnabled = false;
         customChordPanel.setVisible(false);
+        this.previouslySelected = inputChordList;
 
-
-        if(customChords.size()>0) {
+        if (customChords.size() > 0) {
             customChordPanel.setVisible(true);
             DefaultListModel<String> listModel = new DefaultListModel<>();
             for (String i : customChords) {
@@ -47,6 +48,25 @@ public class ChordSelector extends JDialog {
             }
             customChordList.setModel(listModel);
             customChordsEnabled = true;
+        }
+
+        if (!previouslySelected.isEmpty()){
+            int[] prevMajorChords = getPreviouslySelected(selectedMajorChords);
+            if ( prevMajorChords!=null && prevMajorChords.length!=0 ){
+                selectedMajorChords.setSelectedIndices(prevMajorChords);
+            }
+
+            int[] prevMinorChords = getPreviouslySelected(selectedMinorChords);
+            if ( prevMinorChords!=null && prevMinorChords.length!=0 ){
+                selectedMinorChords.setSelectedIndices(prevMinorChords);
+            }
+
+            if(customChordsEnabled) {
+                int[] prevCustomChords = getPreviouslySelected(selectedMinorChords);
+                if (prevCustomChords != null && prevCustomChords.length != 0) {
+                    customChordList.setSelectedIndices(prevCustomChords);
+                }
+            }
         }
 
 
@@ -119,5 +139,21 @@ public class ChordSelector extends JDialog {
      */
     List<String> getResult(){
         return this.selectedChords;
+    }
+
+    int[] getPreviouslySelected(JList list){
+        //Construct a list of the entries
+        List<Integer> prevSelected = new ArrayList<>();
+        int sizeOfList = list.getModel().getSize();
+        for(int i = 0; i < sizeOfList; i++){
+            if( previouslySelected.contains( list.getModel().getElementAt(i)) ){
+                prevSelected.add(i);
+            }
+        }
+        int[] retVal = new int[prevSelected.size()];
+        for(int j = 0; j < prevSelected.size(); j++){
+            retVal[j] = prevSelected.get(j);
+        }
+        return retVal;
     }
 }
