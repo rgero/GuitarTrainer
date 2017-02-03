@@ -50,6 +50,84 @@ public class ChordSelector extends JDialog {
             customChordsEnabled = true;
         }
 
+
+        selectedMajorChords.setSelectionModel(new DefaultListSelectionModel() {
+            private static final long serialVersionUID = 1L;
+
+            boolean gestureStarted = false;
+
+            @Override
+            public void setSelectionInterval(int index0, int index1) {
+                if(!gestureStarted){
+                    if (isSelectedIndex(index0)) {
+                        super.removeSelectionInterval(index0, index1);
+                    } else {
+                        super.addSelectionInterval(index0, index1);
+                    }
+                }
+                gestureStarted = true;
+            }
+
+            @Override
+            public void setValueIsAdjusting(boolean isAdjusting) {
+                if (!isAdjusting) {
+                    gestureStarted = false;
+                }
+            }
+        });
+
+        selectedMinorChords.setSelectionModel(new DefaultListSelectionModel() {
+            private static final long serialVersionUID = 2L;
+
+            boolean gestureStarted = false;
+
+            @Override
+            public void setSelectionInterval(int index0, int index1) {
+                if(!gestureStarted){
+                    if (isSelectedIndex(index0)) {
+                        super.removeSelectionInterval(index0, index1);
+                    } else {
+                        super.addSelectionInterval(index0, index1);
+                    }
+                }
+                gestureStarted = true;
+            }
+
+            @Override
+            public void setValueIsAdjusting(boolean isAdjusting) {
+                if (!isAdjusting) {
+                    gestureStarted = false;
+                }
+            }
+        });
+
+        if (customChordsEnabled){
+            customChordList.setSelectionModel(new DefaultListSelectionModel() {
+                private static final long serialVersionUID = 3L;
+
+                boolean gestureStarted = false;
+
+                @Override
+                public void setSelectionInterval(int index0, int index1) {
+                    if(!gestureStarted){
+                        if (isSelectedIndex(index0)) {
+                            super.removeSelectionInterval(index0, index1);
+                        } else {
+                            super.addSelectionInterval(index0, index1);
+                        }
+                    }
+                    gestureStarted = true;
+                }
+
+                @Override
+                public void setValueIsAdjusting(boolean isAdjusting) {
+                    if (!isAdjusting) {
+                        gestureStarted = false;
+                    }
+                }
+            });
+        }
+
         if (!previouslySelected.isEmpty()){
             int[] prevMajorChords = getPreviouslySelected(selectedMajorChords);
             if ( prevMajorChords!=null && prevMajorChords.length!=0 ){
@@ -68,8 +146,6 @@ public class ChordSelector extends JDialog {
                 }
             }
         }
-
-
 
         buttonOK.addActionListener(e -> onOK());
 
@@ -146,9 +222,7 @@ public class ChordSelector extends JDialog {
         List<Integer> prevSelected = new ArrayList<>();
         int sizeOfList = list.getModel().getSize();
         for(int i = 0; i < sizeOfList; i++){
-            if( previouslySelected.contains( list.getModel().getElementAt(i)) ){
-                prevSelected.add(i);
-            }
+            if( previouslySelected.contains( list.getModel().getElementAt(i)) ) prevSelected.add(i);
         }
         int[] retVal = new int[prevSelected.size()];
         for(int j = 0; j < prevSelected.size(); j++){
