@@ -67,6 +67,8 @@ public class CustomChordLoader extends JDialog {
                 inputDirectory.setText(exportPath);
             }
         });
+        ImageIcon imgIcon = new ImageIcon(new ImageIcon(ClassLoader.getSystemResource("net/roymond/Resources/FolderIcon.png")).getImage().getScaledInstance(16,16,Image.SCALE_DEFAULT));
+        browseButton.setIcon(imgIcon);
 
         clearButton.addActionListener(e -> {
             fileTypeButtonGroup.clearSelection();
@@ -101,20 +103,23 @@ public class CustomChordLoader extends JDialog {
     private void loadChords(){
         File dir = new File(inputDir);
         File[] files = dir.listFiles((dir1, filename) -> filename.endsWith(fileExt));
-        for(File f : files){
-            int lastPeriod = f.getName().lastIndexOf('.');
-            String name = f.getName().substring(0,lastPeriod);
+        if (files != null) {
+            for(File f : files){
+                int lastPeriod = f.getName().lastIndexOf('.');
+                String name = f.getName().substring(0,lastPeriod);
 
-            BufferedImage loadedImage = null;
-            try {
-                loadedImage = ImageIO.read(f);
-            } catch (IOException e) {
-                e.printStackTrace();
+                BufferedImage loadedImage = null;
+                try {
+                    loadedImage = ImageIO.read(f);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+                if(loadedImage != null) {
+                    results.add(new Chord(name, new ImageIcon(loadedImage.getScaledInstance(340, 416, Image.SCALE_DEFAULT))));
+                }
             }
-
-
-
-            results.add(new Chord(name, new ImageIcon(loadedImage.getScaledInstance(340, 416, Image.SCALE_DEFAULT))));
         }
 
     }
@@ -146,7 +151,7 @@ public class CustomChordLoader extends JDialog {
                 JOptionPane.showMessageDialog(null, "Select a file extension.");
             }
         } else if (!pngButton.isSelected() || !jpgButton.isSelected()) {
-            results = new ArrayList<Chord>();
+            results = new ArrayList<>();
             dispose();
         } else {
             JOptionPane.showMessageDialog(null, "No Valid Import Directory selected");

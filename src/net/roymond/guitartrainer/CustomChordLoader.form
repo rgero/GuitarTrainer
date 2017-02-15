@@ -34,7 +34,7 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="OK"/>
+                  <text value="&amp;Import Chords"/>
                 </properties>
               </component>
               <component id="5723f" class="javax.swing.JButton" binding="buttonCancel">
@@ -42,7 +42,7 @@
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="Cancel"/>
+                  <text value="&amp;Cancel"/>
                 </properties>
               </component>
             </children>
@@ -72,7 +72,7 @@
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Browse"/>
+              <text value="&amp;Browse"/>
             </properties>
           </component>
         </children>
@@ -90,7 +90,7 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="PNG"/>
+              <text value="&amp;PNG"/>
             </properties>
           </component>
           <component id="f5ff6" class="javax.swing.JRadioButton" binding="jpgButton">
@@ -98,7 +98,7 @@
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="JPG"/>
+              <text value="&amp;JPG"/>
             </properties>
           </component>
         </children>
@@ -110,9 +110,12 @@
         <properties>
           <hideActionText value="false"/>
           <horizontalAlignment value="0"/>
-          <text value="Clear Values"/>
+          <text value="Clear &amp;Values"/>
         </properties>
       </component>
     </children>
   </grid>
+  <inspectionSuppressions>
+    <suppress inspection="NoLabelFor"/>
+  </inspectionSuppressions>
 </form>
