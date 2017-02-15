@@ -1,8 +1,10 @@
 package net.roymond.guitartrainer;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,6 +33,7 @@ public class SetupWindow {
     private JButton loadCustomChords;
     private JPanel chords;
     private JPanel time;
+    private Image iconImg;
 
     private int numberOfChords;
     private float timeBetweenChords;
@@ -79,6 +82,10 @@ public class SetupWindow {
     }
 
     SetupWindow(){
+
+        //Adding the icon
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        iconImg = kit.createImage(ClassLoader.getSystemResource("net/roymond/Resources/Icon.png"));
 
         //Initial values.
         numberOfChords = 10;
@@ -138,7 +145,7 @@ public class SetupWindow {
         //This action listener will initialize the chord map and then launch the "Training Window"
         startButton.addActionListener(e -> {
             Trainer training = new Trainer(frame, numberOfChords, timeBetweenChords, chordList, chordMap);
-            training.launchWindow();
+            training.launchWindow(iconImg);
             frame.setVisible(false);
 
         });
@@ -147,6 +154,7 @@ public class SetupWindow {
         launchChordSelect.addActionListener(e -> {
             ChordSelector dialog = new ChordSelector(customChordList, chordList);
             dialog.pack();
+            dialog.setIconImage(iconImg);
             dialog.setVisible(true);
 
 
@@ -172,10 +180,11 @@ public class SetupWindow {
          */
         loadCustomChords.addActionListener(e -> {
             CustomChordLoader dialog = new CustomChordLoader( inputDir, fileExt);
+            dialog.setIconImage(iconImg);
             dialog.pack();
             dialog.setVisible(true);
 
-            List<Chord> data = null;
+            List<Chord> data;
             data = dialog.getResults();
 
             if (data != null && data.size()>0 ){
@@ -198,6 +207,34 @@ public class SetupWindow {
         frame.pack();
         frame.setVisible(true);
         frame.setResizable(false);
+
+        JMenuBar menuBar = new JMenuBar();
+        JMenu menu = new JMenu("Help");
+        menu.setMnemonic(KeyEvent.VK_A);
+        menu.getAccessibleContext().setAccessibleDescription("The About lives here");
+
+        Action aboutAction = new AbstractAction("About the Chord Drawer") {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame aboutDisplay = new JFrame("AboutDisplay");
+                aboutDisplay.setTitle("About Roy's Chord Drawer");
+                aboutDisplay.setContentPane(new AboutDisplay().About);
+                aboutDisplay.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+                aboutDisplay.pack();
+                aboutDisplay.setResizable(false);
+                aboutDisplay.setVisible(true);
+            }
+        };
+
+        JMenuItem menuItem = new JMenuItem();
+        menuItem.setAction(aboutAction);
+        menu.add(menuItem);
+        menuBar.add(menu);
+
+        frame.setIconImage(iconImg);
+        frame.setJMenuBar(menuBar);
+
     }
 
 }

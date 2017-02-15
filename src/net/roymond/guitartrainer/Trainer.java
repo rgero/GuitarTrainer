@@ -1,6 +1,7 @@
 package net.roymond.guitartrainer;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -139,13 +140,14 @@ public class Trainer {
         runTimer();
     }
 
-    void launchWindow() {
+    void launchWindow(Image img) {
         trainerFrame = new JFrame("Trainer");
         trainerFrame.setTitle("Roy's Guitar Trainer");
         trainerFrame.setContentPane(this.Trainer);
         trainerFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         trainerFrame.pack();
         trainerFrame.setVisible(true);
+        trainerFrame.setIconImage(img);
         trainerFrame.setResizable(false);
     }
 
