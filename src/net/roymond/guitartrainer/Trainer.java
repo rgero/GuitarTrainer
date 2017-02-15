@@ -40,6 +40,28 @@ public class Trainer {
     private int currentCountDown;
     private float countdownDelay;
 
+    public Trainer(JFrame parent, int numChords, float timeBetween, List<String> chordList, HashMap<String, ImageIcon> map){
+
+        this.numChords = numChords;
+        this.timeBetween = timeBetween;
+        this.chordList = chordList;
+        this.currentChord = "";
+        this.chordMap = map;
+        this.rand = new Random();
+
+        countdownStart = 3;
+        currentCountDown = countdownStart;
+        countdown = true;
+        countdownDelay = 1;
+
+        backToSetupButton.addActionListener(e -> {
+            parent.setVisible(true);
+            trainerFrame.dispose();
+        });
+
+        runTimer();
+    }
+
 
     private void chooseNewChord(){
         String tempSelected = currentChord;
@@ -115,29 +137,6 @@ public class Trainer {
         });
 
         timer.start();
-    }
-
-
-    public Trainer(JFrame parent, int numChords, float timeBetween, List<String> chordList, HashMap<String, ImageIcon> map){
-
-        this.numChords = numChords;
-        this.timeBetween = timeBetween;
-        this.chordList = chordList;
-        this.currentChord = "";
-        this.chordMap = map;
-        this.rand = new Random();
-
-        countdownStart = 3;
-        currentCountDown = countdownStart;
-        countdown = true;
-        countdownDelay = 1;
-
-        backToSetupButton.addActionListener(e -> {
-            parent.setVisible(true);
-            trainerFrame.dispose();
-        });
-
-        runTimer();
     }
 
     void launchWindow(Image img) {

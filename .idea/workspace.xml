@@ -6,14 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8a9c2966-53d2-492f-930d-c4a0265666e2" name="Default" comment="Adding the icons and the &quot;About&quot; menu to this.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/net/roymond/Resources/FolderIcon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/net/roymond/Resources/Icon.PNG" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/net/roymond/Resources/about.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/net/roymond/guitartrainer/AboutDisplay.form" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/net/roymond/guitartrainer/AboutDisplay.java" />
+    <list default="true" id="8a9c2966-53d2-492f-930d-c4a0265666e2" name="Default" comment="This is just a style change. I moved the constructors to the top of the file.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GuitarTrainer.iml" afterPath="$PROJECT_DIR$/GuitarTrainer.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/roymond/guitartrainer/SetupWindow.java" afterPath="$PROJECT_DIR$/src/net/roymond/guitartrainer/SetupWindow.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/roymond/guitartrainer/Trainer.java" afterPath="$PROJECT_DIR$/src/net/roymond/guitartrainer/Trainer.java" />
     </list>
@@ -56,8 +50,8 @@
       <file leaf-file-name="Trainer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/net/roymond/guitartrainer/Trainer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="58" column="48" lean-forward="false" selection-start-line="58" selection-start-column="48" selection-end-line="58" selection-end-column="48" />
+            <state relative-caret-position="601">
+              <caret line="62" column="5" lean-forward="false" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -73,20 +67,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SetupWindow.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SetupWindow.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/net/roymond/guitartrainer/SetupWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="186" column="28" lean-forward="false" selection-start-line="186" selection-start-column="28" selection-end-line="186" selection-end-column="28" />
+            <state relative-caret-position="3175">
+              <caret line="162" column="5" lean-forward="false" selection-start-line="162" selection-start-column="5" selection-end-line="162" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AboutDisplay.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AboutDisplay.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/net/roymond/guitartrainer/AboutDisplay.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="67">
+            <state relative-caret-position="132">
               <caret line="11" column="35" lean-forward="true" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
               <folding />
             </state>
@@ -118,7 +112,7 @@
       <file leaf-file-name="ChordSelector.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/net/roymond/guitartrainer/ChordSelector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-504">
+            <state relative-caret-position="3060">
               <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
               <folding />
             </state>
@@ -128,7 +122,7 @@
       <file leaf-file-name="CustomChordLoader.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/net/roymond/guitartrainer/CustomChordLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2442">
+            <state relative-caret-position="1914">
               <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -175,9 +169,9 @@
         <option value="$PROJECT_DIR$/src/net/roymond/guitartrainer/ChordSelector.java" />
         <option value="$PROJECT_DIR$/src/net/roymond/guitartrainer/AboutDisplay.form" />
         <option value="$PROJECT_DIR$/src/net/roymond/guitartrainer/AboutDisplay.java" />
-        <option value="$PROJECT_DIR$/src/net/roymond/guitartrainer/Trainer.java" />
         <option value="$PROJECT_DIR$/src/net/roymond/Resources/about.html" />
         <option value="$PROJECT_DIR$/src/net/roymond/guitartrainer/SetupWindow.java" />
+        <option value="$PROJECT_DIR$/src/net/roymond/guitartrainer/Trainer.java" />
       </list>
     </option>
   </component>
@@ -340,6 +334,10 @@
               <option name="myItemId" value="guitartrainer" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChordSelector" />
+              <option name="myItemType" value="com.intellij.uiDesigner.projectView.FormNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -365,6 +363,28 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="AboutDisplay" />
               <option name="myItemType" value="com.intellij.uiDesigner.projectView.FormNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GuitarTrainer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GuitarTrainer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="roymond" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="guitartrainer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -719,7 +739,14 @@
       <option name="project" value="LOCAL" />
       <updated>1484278219890</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Adding the icons and the &quot;About&quot; menu to this.">
+      <created>1487168648836</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1487168648836</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -733,12 +760,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1618" height="1184" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32938644" sideWeight="0.49791667" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3231649" sideWeight="0.4675" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3231649" sideWeight="0.4675" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -807,7 +834,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added a basic chord selection form. I am going to have to investigate how to make this look better." />
     <MESSAGE value="Added the minor chords to the chord selection" />
     <MESSAGE value="Created the dialog for the note selection." />
     <MESSAGE value="Got the timer running for one loop" />
@@ -832,7 +858,8 @@
     <MESSAGE value="Added a check for null on the function &quot;loadCustomChord&quot;" />
     <MESSAGE value="Implemented the ability to show the previously selected chords when you go back into the ChordSelection window." />
     <MESSAGE value="Adding the icons and the &quot;About&quot; menu to this." />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding the icons and the &quot;About&quot; menu to this." />
+    <MESSAGE value="This is just a style change. I moved the constructors to the top of the file." />
+    <option name="LAST_COMMIT_MESSAGE" value="This is just a style change. I moved the constructors to the top of the file." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1106,14 +1133,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/roymond/guitartrainer/ChordSelector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-504">
-          <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/net/roymond/guitartrainer/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -1122,27 +1141,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/roymond/guitartrainer/CustomChordLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2442">
-          <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/net/roymond/guitartrainer/AboutDisplay.form">
       <provider selected="true" editor-type-id="ui-designer">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/roymond/guitartrainer/AboutDisplay.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="11" column="35" lean-forward="true" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/net/roymond/Resources/about.html">
@@ -1153,18 +1154,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/roymond/guitartrainer/Trainer.java">
+    <entry file="file://$PROJECT_DIR$/src/net/roymond/guitartrainer/SetupWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="58" column="48" lean-forward="false" selection-start-line="58" selection-start-column="48" selection-end-line="58" selection-end-column="48" />
+        <state relative-caret-position="3175">
+          <caret line="162" column="5" lean-forward="false" selection-start-line="162" selection-start-column="5" selection-end-line="162" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/roymond/guitartrainer/SetupWindow.java">
+    <entry file="file://$PROJECT_DIR$/src/net/roymond/guitartrainer/Trainer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="186" column="28" lean-forward="false" selection-start-line="186" selection-start-column="28" selection-end-line="186" selection-end-column="28" />
+        <state relative-caret-position="601">
+          <caret line="62" column="5" lean-forward="false" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/roymond/guitartrainer/CustomChordLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1914">
+          <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/roymond/guitartrainer/ChordSelector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3060">
+          <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/roymond/guitartrainer/AboutDisplay.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="11" column="35" lean-forward="true" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
           <folding />
         </state>
       </provider>

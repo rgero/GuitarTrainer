@@ -44,43 +44,6 @@ public class SetupWindow {
     private String inputDir;
     private String fileExt;
 
-    /**
-     * This function updates all of the appropriate labels on the window
-     */
-    private void updateLabels(){
-        numberOfChordsLabel.setText(String.valueOf(numberOfChords));
-        timeBetweenChordsLabel.setText(String.format("%2.2fs",timeBetweenChords));
-        numberOfChordsSelected.setText(String.valueOf(chordList.size()));
-    }
-
-
-    /**
-     * This function creates the default hashmap that contains all the chords
-     * supported out of the box. This can be overwritten if the user specifies
-     * a "Custom Chord" directory.
-     * @return Hashmap of default chords.
-     */
-    private HashMap<String, ImageIcon> initializeDefaultChordMap(){
-        HashMap<String, ImageIcon> chordMap = new HashMap<>();
-
-        chordMap.put("A", new ImageIcon(this.getClass().getResource("/net/roymond/chords/A.png")));
-        chordMap.put("B", new ImageIcon(this.getClass().getResource("/net/roymond/chords/B.png")));
-        chordMap.put("C", new ImageIcon(this.getClass().getResource("/net/roymond/chords/C.png")));
-        chordMap.put("D", new ImageIcon(this.getClass().getResource("/net/roymond/chords/D.png")));
-        chordMap.put("E", new ImageIcon(this.getClass().getResource("/net/roymond/chords/E.png")));
-        chordMap.put("F", new ImageIcon(this.getClass().getResource("/net/roymond/chords/F.png")));
-        chordMap.put("G", new ImageIcon(this.getClass().getResource("/net/roymond/chords/G.png")));
-        chordMap.put("Am", new ImageIcon(this.getClass().getResource("/net/roymond/chords/Am.png")));
-        chordMap.put("Bm", new ImageIcon(this.getClass().getResource("/net/roymond/chords/Bm.png")));
-        chordMap.put("Cm", new ImageIcon(this.getClass().getResource("/net/roymond/chords/C.png")));
-        chordMap.put("Dm", new ImageIcon(this.getClass().getResource("/net/roymond/chords/Dm.png")));
-        chordMap.put("Em", new ImageIcon(this.getClass().getResource("/net/roymond/chords/Em.png")));
-        chordMap.put("Fm", new ImageIcon(this.getClass().getResource("/net/roymond/chords/Fm.png")));
-        chordMap.put("Gm", new ImageIcon(this.getClass().getResource("/net/roymond/chords/Gm.png")));
-
-        return chordMap;
-    }
-
     SetupWindow(){
 
         //Adding the icon
@@ -197,6 +160,45 @@ public class SetupWindow {
 
         });
 
+    }
+
+
+
+    /**
+     * This function updates all of the appropriate labels on the window
+     */
+    private void updateLabels(){
+        numberOfChordsLabel.setText(String.valueOf(numberOfChords));
+        timeBetweenChordsLabel.setText(String.format("%2.2fs",timeBetweenChords));
+        numberOfChordsSelected.setText(String.valueOf(chordList.size()));
+    }
+
+
+    /**
+     * This function creates the default hashmap that contains all the chords
+     * supported out of the box. This can be overwritten if the user specifies
+     * a "Custom Chord" directory.
+     * @return Hashmap of default chords.
+     */
+    private HashMap<String, ImageIcon> initializeDefaultChordMap(){
+        HashMap<String, ImageIcon> chordMap = new HashMap<>();
+
+        chordMap.put("A", new ImageIcon(this.getClass().getResource("/net/roymond/chords/A.png")));
+        chordMap.put("B", new ImageIcon(this.getClass().getResource("/net/roymond/chords/B.png")));
+        chordMap.put("C", new ImageIcon(this.getClass().getResource("/net/roymond/chords/C.png")));
+        chordMap.put("D", new ImageIcon(this.getClass().getResource("/net/roymond/chords/D.png")));
+        chordMap.put("E", new ImageIcon(this.getClass().getResource("/net/roymond/chords/E.png")));
+        chordMap.put("F", new ImageIcon(this.getClass().getResource("/net/roymond/chords/F.png")));
+        chordMap.put("G", new ImageIcon(this.getClass().getResource("/net/roymond/chords/G.png")));
+        chordMap.put("Am", new ImageIcon(this.getClass().getResource("/net/roymond/chords/Am.png")));
+        chordMap.put("Bm", new ImageIcon(this.getClass().getResource("/net/roymond/chords/Bm.png")));
+        chordMap.put("Cm", new ImageIcon(this.getClass().getResource("/net/roymond/chords/C.png")));
+        chordMap.put("Dm", new ImageIcon(this.getClass().getResource("/net/roymond/chords/Dm.png")));
+        chordMap.put("Em", new ImageIcon(this.getClass().getResource("/net/roymond/chords/Em.png")));
+        chordMap.put("Fm", new ImageIcon(this.getClass().getResource("/net/roymond/chords/Fm.png")));
+        chordMap.put("Gm", new ImageIcon(this.getClass().getResource("/net/roymond/chords/Gm.png")));
+
+        return chordMap;
     }
 
     void launchSetupWindow() {
